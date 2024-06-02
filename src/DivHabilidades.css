@@ -1,0 +1,67 @@
+.divHabilidades {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 2px solid white;
+}
+
+.divHabilidades div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+  
+.divHabilidades button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: rgb(210, 210, 210);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.divHabilidades button:focus {
+    border: 2px solid white;
+}
+
+.divHabilidades img {width: 20px;}
+
+#ulti {
+    width: 50px;
+    height: 50px;
+}
+#ulti:focus {
+    border: none;
+}
+
+#ulti img {width: 25px;}
+
+#ultiActiva {
+    width: 50px;
+    height: 50px;
+    border: 2px goldenrod solid;
+}
+#ultiActiva:focus {
+    border: 2px gold solid;
+}
+
+#ultiActiva img {width: 25px;}
+
+.divInfoHabilidad {
+    line-height: 12px;
+    position: fixed;
+    bottom: 85px;
+    display: flex;
+    flex-direction: column;
+    border: 2px black solid;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background-color: rgb(210, 210, 210);
+}
