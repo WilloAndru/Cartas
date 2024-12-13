@@ -1,5 +1,3 @@
-import { interfazAccion, daño, curacion, elemento, imbuir, resetUlti } from "../functions/interfazAccion";
-
 const personajes = [
     {
         id: "Anemo",
@@ -9,25 +7,13 @@ const personajes = [
         imgBoton2: "hydro2.png",
         backgroundColorBoton: "#72e2c3",
         costoUlti: 2,
-        onClickBoton1: interfazAccion,
-        onClickBoton2: () => {
-            interfazAccion()
-            daño.valor = 3;
-            elemento.valor = "Anemo.png"
-            imbuir.valor = true
-        },
-        onClickBoton3: () => {
-            interfazAccion()
-            resetUlti.valor = true
-            elemento.valor = "Anemo.png"
-            daño.valor = 2;
-            curacion.valor = 4;
-        },
         boton2Info: {
+            daño: 3,
             titulo: "Sombrero",
             descripcion1: "Daño Anemo: +3",
         },
         boton3Info: {
+            daño: 2,
             titulo: "Estrella",
             descripcion1: "Curacion: +4",
             descripcion2: "Daño Anemo: +2"
@@ -41,25 +27,13 @@ const personajes = [
         imgBoton2: "hydro2.png",
         backgroundColorBoton: "#e3b342",
         costoUlti: 3,
-        onClickBoton1: interfazAccion,
-        onClickBoton2: () => {
-            interfazAccion()
-            daño.valor = 3;
-            elemento.valor = "Geo.png"
-            imbuir.valor = true
-        },
-        onClickBoton3: () => {
-            interfazAccion()
-            resetUlti.valor = true
-            elemento.valor = "Geo.png"
-            daño.valor = 2;
-            curacion.valor = 4;
-        },
         boton2Info: {
+            daño: 3,
             titulo: "Sombrero",
             descripcion1: "Daño Geo: +3",
         },
         boton3Info: {
+            daño: 2,
             titulo: "Estrella",
             descripcion1: "Curacion: +4",
             descripcion2: "Daño Geo: +2"
@@ -73,25 +47,13 @@ const personajes = [
         imgBoton2: "hydro2.png",
         backgroundColorBoton: "#a757cb",
         costoUlti: 2,
-        onClickBoton1: interfazAccion,
-        onClickBoton2: () => {
-            interfazAccion()
-            daño.valor = 3;
-            elemento.valor = "Electro.png"
-            imbuir.valor = true
-        },
-        onClickBoton3: () => {
-            interfazAccion()
-            resetUlti.valor = true
-            elemento.valor = "Electro.png"
-            daño.valor = 2;
-            curacion.valor = 4;
-        },
         boton2Info: {
+            daño: 3,
             titulo: "Sombrero",
             descripcion1: "Daño Electro: +3",
         },
         boton3Info: {
+            daño: 2,
             titulo: "Estrella",
             descripcion1: "Curacion: +4",
             descripcion2: "Daño Electro: +2"
@@ -105,25 +67,13 @@ const personajes = [
         imgBoton2: "hydro2.png",
         backgroundColorBoton: "#21e1eb",
         costoUlti: 3,
-        onClickBoton1: interfazAccion,
-        onClickBoton2: () => {
-            interfazAccion()
-            daño.valor = 3;
-            elemento.valor = "Hydro.png"
-            imbuir.valor = true
-        },
-        onClickBoton3: () => {
-            interfazAccion()
-            resetUlti.valor = true
-            elemento.valor = "Hydro.png"
-            daño.valor = 2;
-            curacion.valor = 4;
-        },
         boton2Info: {
+            daño: 3,
             titulo: "Sombrero",
             descripcion1: "Daño Hydro: +3",
         },
         boton3Info: {
+            daño: 2,
             titulo: "Estrella",
             descripcion1: "Curacion: +4",
             descripcion2: "Daño Hydro: +2"
@@ -137,24 +87,13 @@ const personajes = [
         imgBoton2: "pyro2.png",
         backgroundColorBoton: "#fe925d",
         costoUlti: 3,
-        onClickBoton1: interfazAccion,
-        onClickBoton2: () => {
-            interfazAccion()
-            daño.valor = 3;
-            elemento.valor = "Pyro.png"
-        },
-        onClickBoton3: () => {
-            interfazAccion()
-            resetUlti.valor = true
-            daño.valor = 4;
-            curacion.valor = 2;
-            elemento.valor = "Pyro.png"
-        },
         boton2Info: {
+            daño: 3,
             titulo: "Mariposa",
             descripcion1: "Daño Pyro: +3",
         },
         boton3Info: {
+            daño: 4,
             titulo: "Fantasma",
             descripcion1: "Daño Pyro: +4",
             descripcion2: "Curacion: +2"
@@ -168,23 +107,13 @@ const personajes = [
         imgBoton2: "cryo2.png",
         backgroundColorBoton: "#a0e9e5",
         costoUlti: 2,
-        onClickBoton1: interfazAccion,
-        onClickBoton2: () => {
-            interfazAccion()
-            daño.valor = 2;
-            elemento.valor = "Cryo.png"
-        },
-        onClickBoton3: () => {
-            interfazAccion()
-            resetUlti.valor = true
-            daño.valor = 4;
-            elemento.valor = "Cryo.png"
-        },
         boton2Info: {
+            daño: 2,
             titulo: "Corte",
             descripcion1: "Daño Cryo: +2"
         },
         boton3Info: {
+            daño: 6,
             titulo: "Ultimatum",
             descripcion1: "Daño Cryo: +6"
         },

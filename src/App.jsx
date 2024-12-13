@@ -1,24 +1,30 @@
-import React from 'react'
-import './App.css'
-import DivEspeciales from './DivEspeciales'
-import DivOponentes from './DivOponentes'
-import DivPersonajes from './DivPersonajes'
-import { MyContextProvider } from './Context';
-import { MyContextProviderEsp } from './ContextEspeciales';
+import React from 'react';
+import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ContextProvider } from './context/Context';
+import Principal from './pages/Principal';
+import Mazo from './pages/Mazo';
+
+const router = createBrowserRouter([
+  {
+    path: '/mazo',
+    element: <Mazo />,
+  },
+  {
+    path: '/',
+    element: <Principal />,
+  },
+]);
 
 function App() {
-    
   return (
-    <MyContextProviderEsp>
-    <MyContextProvider>
-      <div id='body'>
-        <DivOponentes/>
-        <DivPersonajes/>
-        <DivEspeciales/>
+    <ContextProvider>
+      <div className='app'>
+        <RouterProvider router={router} />
       </div>
-    </MyContextProvider>
-    </MyContextProviderEsp>
-  )
+    </ContextProvider>
+  );
 }
 
-export default App
+export default App;
+
