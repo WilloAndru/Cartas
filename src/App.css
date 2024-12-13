@@ -19,7 +19,7 @@ html {
   gap: 2rem;
 }
 
-.divCartas {
+.divPersonajes, .divOponentes, .divEspeciales {
   display: flex;
   gap: 1rem;
 
@@ -31,8 +31,7 @@ html {
     border-radius: .8rem;
     height: 10rem;
     width: 6.6rem;
-    border: 2px solid #dedede;
-    overflow: hidden;
+    border: 2px solid white;
     transition: transform 0.2s ease-in-out;
 
     img {
@@ -52,6 +51,7 @@ html {
         width: 2.2rem;
         height: 2rem;
         border-bottom-left-radius: .8rem;
+        border-top-right-radius: .8rem;
         background-color: white;
       }
 
@@ -65,8 +65,10 @@ html {
       }
     }
   }
+}
 
-  .cartaFocus:focus {
+.divPersonajes, .divEspeciales {
+  button:focus {
     transform: translateY(-.5rem);
     border-color: black;
   }

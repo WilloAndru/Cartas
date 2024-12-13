@@ -11,25 +11,24 @@ function Carta(props) {
   ))
 
   const handleClickCarta = () => {
-    if (props.turno) {      
+    if (props.className != "divOponentes") {   
       props.onClick();
-    } else if (!props.turno && contexto.daño) {
+    } else if (props.className != "divPersonajes" && contexto.daño) {
       const nuevaVida = vida - contexto.daño;
       if (nuevaVida <= 0) {
         setDerrota(true);
       }
       setVida(nuevaVida);
-      actualizarContexto({ daño: null })
+      actualizarContexto({ daño: null, turno: false })
     }
   };
   
   return (
     <button
-      className={`${props.turno ? "cartaFocus" : ""}`}
       style={{ 
         backgroundColor: props.backgroundColor,
-        pointerEvents: (props.turno || contexto.daño) ? "all" : "none",
-        borderColor: (!props.turno && contexto.daño) ? "red" : "",
+        pointerEvents: (contexto.daño && props.className.includes("divOponentes")) ? "all" : "",
+        borderColor: (contexto.daño && props.className.includes("divOponentes")) ? "red" : "",
       }}
       onClick={handleClickCarta}
     >

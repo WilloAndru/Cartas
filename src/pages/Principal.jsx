@@ -30,13 +30,16 @@ function Principal() {
   };
 
   useEffect(() => {
+    if (!contexto.turno) {
+      resetStates();
+    }
     window.addEventListener('click', volverEstado, { passive: true });
     window.addEventListener('keydown', volverEstadoEsc);
     return () => {
       window.removeEventListener('click', volverEstado);
       window.removeEventListener('keydown', volverEstadoEsc);
     };
-  }, []);
+  }, [contexto.turno]);
 
   return (
     <div
@@ -44,19 +47,18 @@ function Principal() {
       style={{ backgroundColor: `${contexto.daño ? "#aaaaaa" : "#dedede"}` }}
     >
       <DivCartas
-        turno={false}
+        className="divOponentes"
         lista={personajes}
         intervalo={[0, 3]}
       />
       <DivCartas
-        turno={true}
+        className="divPersonajes"
         lista={personajes}
         intervalo={[3, 6]}
         clickCarta={(carta) => setCartaPjSelec(carta)}
       />
       <DivCartas
-        turno={true}
-        esEspecial={true}
+        className="divEspeciales"
         lista={cartasEspeciales}
         intervalo={[0, 5]}
         clickCarta={(carta) => setCartaEspSelec(carta)}

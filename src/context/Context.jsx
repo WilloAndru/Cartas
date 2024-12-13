@@ -4,7 +4,7 @@ export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [contexto, setContexto] = useState({
-    trunoNpc: false,
+    turno: true,
     daño: null,
     ganaEnergia: true,
     cura: 0,

@@ -8,8 +8,8 @@ function DivCartas(props) {
     return (
       <Carta
         key={i}
+        className={props.className}
         img={c.img}
-        turno={props.turno}
         backgroundColor={c.backgroundColor}
         costoUlti={c.costoUlti}
         onClick={() => props.clickCarta(c)}
@@ -18,7 +18,7 @@ function DivCartas(props) {
   });
 
   return (
-    <div className={`divCartas ${props.turno ? "no-reset" : ""} ${props.esEspecial ? "divEspeciales" : ""}`}>
+    <div className={`no-reset ${props.className}`}>
       {cartas}
     </div>
   );
