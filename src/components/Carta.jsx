@@ -5,6 +5,7 @@ function Carta(props) {
   const { contexto, actualizarContexto } = useContext(Context);
   const [vida, setVida] = useState(10);
   const [derrota, setDerrota] = useState(false);
+  const energia = contexto.cartaSeleccionada === props.id ? contexto.energia : 0;
 
   const costoUlti = Array.from({ length: props.costoUlti }, (_, i) => (
     <div 
@@ -24,6 +25,13 @@ function Carta(props) {
       }
       setVida(nuevaVida);
       actualizarContexto({ daño: null, turno: false })
+    }
+    if (contexto.cartaSeleccionada === props.id) {
+      if (contexto.ganaEnergia) {
+        actualizarContexto({ energia: contexto.energia + 1 });
+      } else {
+        actualizarContexto({ energia: 0 }); // Reiniciamos la energía cuando ganaEnergia es false
+      }
     }
   };
   
