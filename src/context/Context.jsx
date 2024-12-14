@@ -26,11 +26,12 @@ export const ContextProvider = ({ children }) => {
     }));
   };
 
-  const actualizarCartas = (nuevasCartas) => {
-    setCartaContexto((prevCartas) => [
-      ...prevCartas,
-      ...nuevasCartas,
-    ]);
+  const actualizarCarta = (id, nuevaEnergia) => {
+    setCartaContexto((prevCartas) => 
+      prevCartas.map((carta) =>
+        carta.id === id ? { ...carta, energia: nuevaEnergia } : carta
+      )
+    );
   };
 
   return (
