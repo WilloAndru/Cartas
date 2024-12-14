@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Context } from '../context/Context';
 
 function DivHabilidades(props) {
-  const { actualizarContexto } = useContext(Context);
+  const { contexto, actualizarContexto } = useContext(Context);
   const [infoHabilidad, setInfoHabilidad] = useState(null);
   const { carta } = props;
 
@@ -25,6 +25,7 @@ function DivHabilidades(props) {
         >
           <img src="ataqueBasico.png" alt="Ataque Básico" />
         </button>
+        
         <button
           onClick={() => actualizarContexto({ daño: carta.boton2Info.daño })}
           onMouseEnter={() => setInfoHabilidad(carta.boton2Info)}
@@ -33,12 +34,16 @@ function DivHabilidades(props) {
         >
           <img src={carta.imgBoton1} alt="Habilidad 2" />
         </button>
+        
         <button
           onClick={() => actualizarContexto({ daño: carta.boton3Info.daño })}
           onMouseEnter={() => setInfoHabilidad(carta.boton3Info)}
           onMouseLeave={() => setInfoHabilidad(null)}
           className="ulti"
-          style={{ backgroundColor: carta.backgroundColorBoton }}
+          style={{ 
+            backgroundColor: contexto.activarUlti ? carta.backgroundColorBoton : "",
+            pointerEvents: contexto.activarUlti ? "all" : "",
+          }}
         >
           <img src={carta.imgBoton2} alt="Habilidad 3" />
         </button>
