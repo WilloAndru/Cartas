@@ -7,7 +7,7 @@ export const ContextProvider = ({ children }) => {
     turno: true,
     daño: null,
     cura: null,
-    activarUlti: false
+    cartaSeleccionada: null,
   });
 
   const actualizarContexto = (nuevosValores) => {
@@ -15,8 +15,6 @@ export const ContextProvider = ({ children }) => {
       ...prevContexto,
       ...nuevosValores,
     }));
-  };
-
 
   return (
     <Context.Provider value={{ contexto, actualizarContexto }}>
