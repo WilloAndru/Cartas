@@ -18,14 +18,14 @@ function Carta(props) {
   const handleClickCarta = () => {
     if (props.className != "divOponentes") {   
       props.onClick();
-      actualizarContexto({ cartaSeleccionada: { id: props.id } });
+      actualizarContexto({ activarUlti: true });
     } else if (props.className == "divOponentes" && contexto.daño) {
       const nuevaVida = vida - contexto.daño;
       if (nuevaVida <= 0) { setDerrota(true) };
       setVida(nuevaVida);
       setEnergia(prev => prev + 1);
       if (props.costoUlti == energia) { actualizarContexto({ activarUlti: true }) };
-      actualizarContexto({ daño: null, turno: false, cartaSeleccionada: null })
+      actualizarContexto({ daño: null, turno: false })
     }
   };
   
