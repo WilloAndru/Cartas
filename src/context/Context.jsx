@@ -20,6 +20,7 @@ export const ContextProvider = ({ children }) => {
     }));
   };
 
+
   return (
     <Context.Provider value={{ contexto, actualizarContexto }}>
       {children}
