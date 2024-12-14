@@ -7,7 +7,11 @@ function Carta(props) {
   const [derrota, setDerrota] = useState(false);
 
   const costoUlti = Array.from({ length: props.costoUlti }, (_, i) => (
-    <div key={i}></div>
+    <div 
+      key={i}
+      style={{ backgroundColor: i < props.energia ? 'yellow' : 'transparent' }}
+    >
+    </div>
   ))
 
   const handleClickCarta = () => {
