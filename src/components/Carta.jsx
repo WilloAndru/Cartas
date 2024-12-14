@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Context } from '../context/Context';
 
 function Carta(props) {
-  const { contexto, actualizarContexto } = useContext(Context);
+  const { contexto, actualizarContexto, cartaContexto, actualizarCartas } = useContext(Context);
   const [vida, setVida] = useState(10);
   const [derrota, setDerrota] = useState(false);
 
@@ -17,11 +17,15 @@ function Carta(props) {
   const handleClickCarta = () => {
     if (props.className != "divOponentes") {   
       props.onClick();
+      props.className == "divPersonajes" ? actualizarContexto({ cartaSeleccionada: props.id }) : null
     } else if (props.className == "divOponentes" && contexto.daño) {
       const nuevaVida = vida - contexto.daño;
       if (nuevaVida <= 0) { setDerrota(true) };
       setVida(nuevaVida);
       actualizarContexto({ daño: null, turno: false })
+      const activarUlti = false;
+      props.energia + 1 == props.costUlti ? activarUlti = true : null
+      actualizarCartas(contexto.cartaSeleccionada, props.energia + 1, activarUlti)
     }
   };
   
