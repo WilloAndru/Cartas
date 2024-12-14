@@ -6,9 +6,11 @@ export const ContextProvider = ({ children }) => {
   const [contexto, setContexto] = useState({
     turno: true,
     daño: null,
-    cartaSeleccionada: null,
-    ganaEnergia: false,
     cura: 0,
+    cartaSeleccionada: {
+      id: null,
+      activarUlti: false
+    }
   });
 
   const actualizarContexto = (nuevosValores) => {
