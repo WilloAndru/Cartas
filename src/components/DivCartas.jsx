@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Carta from './Carta';
+import { Context } from '../context/Context';
 
 function DivCartas(props) {
+  const { cartaContexto, actualizarCartas } = useContext(Context);
   const [inicio, fin] = props.intervalo;
 
   const cartas = props.lista.slice(inicio, fin).map((c, i) => {
@@ -12,6 +14,7 @@ function DivCartas(props) {
         img={c.img}
         backgroundColor={c.backgroundColor}
         costoUlti={c.costoUlti}
+        energia={cartaContexto[i].energia || 0}
         onClick={() => props.clickCarta(c)}
       />
     );
