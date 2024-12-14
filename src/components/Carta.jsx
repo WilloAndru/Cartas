@@ -5,12 +5,12 @@ function Carta(props) {
   const { contexto, actualizarContexto } = useContext(Context);
   const [vida, setVida] = useState(10);
   const [derrota, setDerrota] = useState(false);
-  const energia = contexto.cartaSeleccionada === props.id ? contexto.energia : 0;
+  const [energia, setEnergia] = useState(0);
 
   const costoUlti = Array.from({ length: props.costoUlti }, (_, i) => (
     <div 
       key={i}
-      style={{ backgroundColor: i < props.energia ? 'yellow' : 'transparent' }}
+      style={{ backgroundColor: i < energia ? 'yellow' : 'transparent' }}
     >
     </div>
   ))
@@ -18,20 +18,12 @@ function Carta(props) {
   const handleClickCarta = () => {
     if (props.className != "divOponentes") {   
       props.onClick();
-    } else if (props.className != "divPersonajes" && contexto.daño) {
+    } else if (props.className == "divOponentes" && contexto.daño) {
       const nuevaVida = vida - contexto.daño;
-      if (nuevaVida <= 0) {
-        setDerrota(true);
-      }
+      if (nuevaVida <= 0) {setDerrota(true)};
       setVida(nuevaVida);
+      setEnergia(prev => prev + 1);
       actualizarContexto({ daño: null, turno: false })
-    }
-    if (contexto.cartaSeleccionada === props.id) {
-      if (contexto.ganaEnergia) {
-        actualizarContexto({ energia: contexto.energia + 1 });
-      } else {
-        actualizarContexto({ energia: 0 }); // Reiniciamos la energía cuando ganaEnergia es false
-      }
     }
   };
   
