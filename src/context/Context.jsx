@@ -26,10 +26,10 @@ export const ContextProvider = ({ children }) => {
     }));
   };
 
-  const actualizarCarta = (id, nuevaEnergia) => {
+  const actualizarCarta = (id, nuevaEnergia, activarUlti) => {
     setCartaContexto((prevCartas) => 
       prevCartas.map((carta) =>
-        carta.id === id ? { ...carta, energia: nuevaEnergia } : carta
+        carta.id === id ? { ...carta, energia: nuevaEnergia, activarUlti: activarUlti } : carta
       )
     );
   };
