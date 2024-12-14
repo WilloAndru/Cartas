@@ -3,7 +3,7 @@ import Carta from './Carta';
 import { Context } from '../context/Context';
 
 function DivCartas(props) {
-  const { cartaContexto, actualizarCartas } = useContext(Context);
+  const { cartaContexto } = useContext(Context);
   const [inicio, fin] = props.intervalo;
 
   const cartas = props.lista.slice(inicio, fin).map((c, i) => {
