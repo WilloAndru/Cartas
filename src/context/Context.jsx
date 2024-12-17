@@ -7,17 +7,19 @@ export const ContextProvider = ({ children }) => {
     turno: true,
     daño: null,
     cura: null,
+    energia: null,
+    activarUlti: false,
+    esUlti: false,
+    cartaSeleccionada: null,
+    cartaEspSeleccionada: null,
+    cartaOpnSeleccionada: null,
   });
 
-  const inicializarCartas = () => {
-    const cartas = [];
-    for (let i = 0; i < 6; i++) {
-      cartas.push({ energia: 0, activarUlti: false });
-    }
-    return cartas;
+  const generarCartas = () => {
+    return Array.from({ length: 16 }, () => ({ energia: 0, noDisplay: false }));
   };
 
-  const [cartaContexto, setCartaContexto] = useState(inicializarCartas);
+  const [cartaContexto, setCartaContexto] = useState(generarCartas());
 
   const actualizarContexto = (nuevosValores) => {
     setContexto((prevContexto) => ({
@@ -26,16 +28,16 @@ export const ContextProvider = ({ children }) => {
     }));
   };
 
-  const actualizarCarta = (id, nuevaEnergia, activarUlti) => {
-    setCartaContexto((prevCartas) => 
-      prevCartas.map((carta) =>
-        carta.id === id ? { ...carta, energia: nuevaEnergia, activarUlti: activarUlti } : carta
+  const actualizarCarta = (indice, nuevosAtributos) => {
+    setCartaContexto(prev =>
+      prev.map((item, index) =>
+        index === indice ? { ...item, ...nuevosAtributos } : item
       )
     );
   };
 
   return (
-    <Context.Provider value={{ contexto, actualizarContexto, cartaContexto, actualizarCartas }}>
+    <Context.Provider value={{ contexto, actualizarContexto, cartaContexto, actualizarCarta }}>
       {children}
     </Context.Provider>
   );

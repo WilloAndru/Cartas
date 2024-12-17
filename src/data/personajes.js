@@ -6,17 +6,36 @@ const personajes = [
         imgBoton1: "hydro1.png",
         imgBoton2: "hydro2.png",
         backgroundColorBoton: "#72e2c3",
+        costoUlti: 3,
+        boton2Info: {
+            cura: 3,
+            titulo: "Eco de las Alturas",
+            descripcion1: "Cura 3 de vida al personaje seleccionado",
+        },
+        boton3Info: {
+            cura: 2,
+            global: true,
+            titulo: "Bendición del Monzón",
+            descripcion1: "Cura 2 de vida a todos los personajes",
+        },
+    },
+    {
+        id: "Anemo Asesino",
+        img: "Anemo.png",
+        backgroundColor: "#5bb59c",
+        imgBoton1: "hydro1.png",
+        imgBoton2: "hydro2.png",
+        backgroundColorBoton: "#72e2c3",
         costoUlti: 2,
         boton2Info: {
             daño: 3,
-            titulo: "Sombrero",
-            descripcion1: "Daño Anemo: +3",
+            titulo: "Lanza de Viento",
+            descripcion1: "Inflinge 3 de daño al oponente seleccionado",
         },
         boton3Info: {
-            daño: 2,
-            titulo: "Estrella",
-            descripcion1: "Curacion: +4",
-            descripcion2: "Daño Anemo: +2"
+            daño: 5,
+            titulo: "Filo Huracanado",
+            descripcion1: "Inflinge 5 de daño al oponente seleccionado",
         },
     },
     {
@@ -28,15 +47,16 @@ const personajes = [
         backgroundColorBoton: "#e3b342",
         costoUlti: 3,
         boton2Info: {
-            daño: 3,
-            titulo: "Sombrero",
-            descripcion1: "Daño Geo: +3",
+            daño: 1,
+            global: true,
+            titulo: "Golpe Sísmico",
+            descripcion1: "Inflinge 1 de daño a todos los oponentes",
         },
         boton3Info: {
             daño: 2,
-            titulo: "Estrella",
-            descripcion1: "Curacion: +4",
-            descripcion2: "Daño Geo: +2"
+            global: true,
+            titulo: "Ruptura del Abismo",
+            descripcion1: "Inflinge 2 de daño a todos los oponentes",
         },
     },
     {
@@ -46,17 +66,17 @@ const personajes = [
         imgBoton1: "hydro1.png",
         imgBoton2: "hydro2.png",
         backgroundColorBoton: "#a757cb",
-        costoUlti: 2,
+        costoUlti: 3,
         boton2Info: {
             daño: 3,
-            titulo: "Sombrero",
-            descripcion1: "Daño Electro: +3",
+            global: true,
+            titulo: "Descarga Eléctrica",
+            descripcion1: "Inflinge 1 de daño a todos los oponentes",
         },
         boton3Info: {
-            daño: 2,
-            titulo: "Estrella",
-            descripcion1: "Curacion: +4",
-            descripcion2: "Daño Electro: +2"
+            daño: 6,
+            titulo: "Espada del Relámpago",
+            descripcion1: "Inflinge 6 de daño al oponente seleccionado",
         },
     },
     {
@@ -66,17 +86,17 @@ const personajes = [
         imgBoton1: "hydro1.png",
         imgBoton2: "hydro2.png",
         backgroundColorBoton: "#21e1eb",
-        costoUlti: 3,
+        costoUlti: 2,
         boton2Info: {
-            daño: 3,
-            titulo: "Sombrero",
-            descripcion1: "Daño Hydro: +3",
+            cura: 1,
+            global: true,
+            titulo: "Flujo Restaurador",
+            descripcion1: "Cura 1 de vida a todos los personajes",
         },
         boton3Info: {
-            daño: 2,
-            titulo: "Estrella",
-            descripcion1: "Curacion: +4",
-            descripcion2: "Daño Hydro: +2"
+            cura: 5,
+            titulo: "Lagrima del Rio",
+            descripcion1: "Cura 5 de vida al personaje seleccionado",
         },
     },
     {
@@ -86,17 +106,16 @@ const personajes = [
         imgBoton1: "pyro1.png",
         imgBoton2: "pyro2.png",
         backgroundColorBoton: "#fe925d",
-        costoUlti: 3,
+        costoUlti: 2,
         boton2Info: {
             daño: 3,
-            titulo: "Mariposa",
-            descripcion1: "Daño Pyro: +3",
+            titulo: "Chispa Mortal",
+            descripcion1: "Inflinge 3 de daño al oponente seleccionado",
         },
         boton3Info: {
-            daño: 4,
-            titulo: "Fantasma",
-            descripcion1: "Daño Pyro: +4",
-            descripcion2: "Curacion: +2"
+            daño: 5,
+            titulo: "Bola de Fuego",
+            descripcion1: "Inflinge 3 de daño al oponente seleccionado",
         },
     },
     {
@@ -108,14 +127,14 @@ const personajes = [
         backgroundColorBoton: "#a0e9e5",
         costoUlti: 2,
         boton2Info: {
-            daño: 2,
-            titulo: "Corte",
-            descripcion1: "Daño Cryo: +2"
+            daño: 3,
+            titulo: "Lanza de Hielo",
+            descripcion1: "Inglinge 3 de daño al oponente seleccionado"
         },
         boton3Info: {
-            daño: 6,
-            titulo: "Ultimatum",
-            descripcion1: "Daño Cryo: +6"
+            cura: 5,
+            titulo: "Brisa Revitalizante",
+            descripcion1: "Cura 5 de vida al personaje seleccionado"
         },
     }
 ];

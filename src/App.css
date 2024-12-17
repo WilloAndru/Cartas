@@ -16,10 +16,10 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
 }
 
-.divPersonajes, .divOponentes, .divEspeciales {
+.divPersonajes, .divOponentes, .divEspeciales, .divEspecialesOpn {
   display: flex;
   gap: 1rem;
 
@@ -43,6 +43,7 @@ html {
       gap: .1rem;
       top: 0;
       right: 0;
+      overflow: hidden;
 
       h3 {
         display: flex;
@@ -51,7 +52,7 @@ html {
         width: 2.2rem;
         height: 2rem;
         border-bottom-left-radius: .8rem;
-        border-top-right-radius: .8rem;
+        border-top-right-radius: .6rem;
         background-color: white;
       }
 
@@ -68,15 +69,37 @@ html {
 }
 
 .divPersonajes, .divEspeciales {
-  button:focus {
-    transform: translateY(-.5rem);
-    border-color: black;
+  .focus {
+    transform: translateY(-16px);
+  }
+}
+
+.divOponentes, .divEspecialesOpn {
+  .focus {
+    transform: translateY(16px);
   }
 }
 
 .divEspeciales {
   position: fixed;
   bottom: -5rem;
+
+  button {
+    margin: 0 -2rem 0 -2rem;
+  }
+
+  .statsCarta {
+    display: none;
+  }
+
+  button:focus {
+    transform: translateY(-16px);
+  }
+}
+
+.divEspecialesOpn {
+  position: fixed;
+  top: -5rem;
 
   button {
     margin: 0 -2rem 0 -2rem;

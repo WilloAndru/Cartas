@@ -1,20 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Carta from './Carta';
-import { Context } from '../context/Context';
 
 function DivCartas(props) {
-  const { cartaContexto } = useContext(Context);
   const [inicio, fin] = props.intervalo;
+  let ajusteId = 0;
+  switch (props.className) {
+    case "divEspecialesOpn":
+      ajusteId = 6
+      break;
+    case "divEspeciales":
+      ajusteId = 11
+      break;
+  }
 
   const cartas = props.lista.slice(inicio, fin).map((c, i) => {
     return (
       <Carta
         key={i}
+        id={inicio + i + ajusteId}
         className={props.className}
-        img={c.img}
+        img={props.className == "divEspecialesOpn" ? "escudo.png" : c.img}
         backgroundColor={c.backgroundColor}
         costoUlti={c.costoUlti}
-        energia={cartaContexto[i].energia || 0}
         onClick={() => props.clickCarta(c)}
       />
     );

@@ -19,7 +19,7 @@ function DivHabilidades(props) {
       <h3>{carta.id}</h3>
       <div className='div'>
         <button
-          onClick={() => actualizarContexto({ daño: 2 })}
+          onClick={() => actualizarContexto({ daño: 2, esUlti: false })}
           onMouseEnter={() => setInfoHabilidad(ataqueBasicoInfo)}
           onMouseLeave={() => setInfoHabilidad(null)}
         >
@@ -27,7 +27,7 @@ function DivHabilidades(props) {
         </button>
         
         <button
-          onClick={() => actualizarContexto({ daño: carta.boton2Info.daño })}
+          onClick={() => actualizarContexto({ daño: carta.boton2Info.daño, esUlti: false })}
           onMouseEnter={() => setInfoHabilidad(carta.boton2Info)}
           onMouseLeave={() => setInfoHabilidad(null)}
           style={{ backgroundColor: carta.backgroundColorBoton }}
@@ -36,13 +36,13 @@ function DivHabilidades(props) {
         </button>
         
         <button
-          onClick={() => actualizarContexto({ daño: carta.boton3Info.daño })}
+          onClick={() => actualizarContexto({ daño: carta.boton3Info.daño, esUlti: true })}
           onMouseEnter={() => setInfoHabilidad(carta.boton3Info)}
           onMouseLeave={() => setInfoHabilidad(null)}
           className="ulti"
           style={{ 
             backgroundColor: contexto.activarUlti ? carta.backgroundColorBoton : "",
-            pointerEvents: contexto.activarUlti ? "all" : "",
+            pointerEvents: contexto.activarUlti ? "all" : "none",
           }}
         >
           <img src={carta.imgBoton2} alt="Habilidad 3" />
@@ -51,7 +51,9 @@ function DivHabilidades(props) {
       {infoHabilidad && (
         <div
           className='divInfoHabilidad'
-          style={{ backgroundColor: `${infoHabilidad == ataqueBasicoInfo && carta.backgroundColorBoton}` }}
+          style={{ 
+            backgroundColor: infoHabilidad.titulo == "Ataque Básico" ? "" : carta.backgroundColorBoton 
+          }}
         >
           <h4>{infoHabilidad.titulo}</h4>
           <p>{infoHabilidad.descripcion1}</p>

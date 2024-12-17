@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react'; 
 import DivCartas from '../components/DivCartas';
 import personajes from '../data/personajes';
 import cartasEspeciales from '../data/cartasEspeciales';
@@ -10,12 +10,13 @@ function Principal() {
   const { contexto, actualizarContexto } = useContext(Context);
   const [cartaPjSelec, setCartaPjSelec] = useState(false);
   const [cartaEspSelec, setCartaEspSelec] = useState(false);
+  const bodyRef = useRef(null);
 
   const resetStates = () => {
     setCartaPjSelec(false);
     setCartaEspSelec(false);
-    actualizarContexto({ daño: null })
-  };
+    actualizarContexto({ daño: null, cura: null, energia: null })
+  }
 
   const volverEstado = (event) => {
     if (!event.target.closest('.no-reset')) {
@@ -29,13 +30,32 @@ function Principal() {
     }
   };
 
+  const bloquearCursor = () => {
+    if (bodyRef.current) {
+      bodyRef.current.requestPointerLock();
+    }
+  };
+
+  const liberarCursor = () => {
+    if (document.pointerLockElement === bodyRef.current) {
+      document.exitPointerLock();
+    }
+  };
+
   useEffect(() => {
     if (!contexto.turno) {
-      resetStates();
+      bloquearCursor();
+      setCartaPjSelec(false);
+      setCartaEspSelec(false);
+    } else {
+      liberarCursor();
     }
+
     window.addEventListener('click', volverEstado, { passive: true });
     window.addEventListener('keydown', volverEstadoEsc);
+
     return () => {
+      liberarCursor();
       window.removeEventListener('click', volverEstado);
       window.removeEventListener('keydown', volverEstadoEsc);
     };
@@ -43,13 +63,21 @@ function Principal() {
 
   return (
     <div
+      ref={bodyRef}
       className="body"
-      style={{ backgroundColor: `${contexto.daño ? "#aaaaaa" : "#dedede"}` }}
+      style={{ backgroundColor: `${((contexto.daño || contexto.cura || contexto.energia) && contexto.turno) ? "#aaaaaa" : "#dedede"}` }}
     >
+      <DivCartas
+        className="divEspecialesOpn"
+        lista={cartasEspeciales}
+        intervalo={[0, 5]}
+        clickCarta={(carta) => setCartaEspSelec(carta)}
+      />
       <DivCartas
         className="divOponentes"
         lista={personajes}
         intervalo={[0, 3]}
+        clickCarta={(carta) => setCartaPjSelec(carta)}
       />
       <DivCartas
         className="divPersonajes"
