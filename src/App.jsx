@@ -17,7 +17,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/Cartas",
+    basename: "/Cartas/",
   }
 );
 

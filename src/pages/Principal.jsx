@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
-import DivCartas from '../components/DivCartas';
-import cartasEspeciales from '../data/cartasEspeciales';
-import DivHabilidades from '../components/DivHabilidades';
-import DivInfoEsp from '../components/DivInfoEsp';
-import { Context } from '../context/Context';
-import { turnoIA } from '../functions/turnoIA';
-import personajes from '../data/personajes';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useContext, useRef } from "react";
+import DivCartas from "../components/DivCartas";
+import cartasEspeciales from "../data/cartasEspeciales";
+import DivHabilidades from "../components/DivHabilidades";
+import DivInfoEsp from "../components/DivInfoEsp";
+import { Context } from "../context/Context";
+import { turnoIA } from "../functions/turnoIA";
+import personajes from "../data/personajes";
+import { useNavigate } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 
 function Principal() {
   localStorage.setItem("listaOpnId", JSON.stringify([2, 4, 5]));
   const bodyRef = useRef(null);
-  const { contexto, actualizarContexto, cartaContexto, actualizarCarta } = useContext(Context);
+  const { contexto, actualizarContexto, cartaContexto, actualizarCarta } =
+    useContext(Context);
   const [contTurnos, setContTurnos] = useState(0);
   const [cartaPjSelec, setCartaPjSelec] = useState(false);
   const [cartaEspSelec, setCartaEspSelec] = useState(false);
@@ -20,18 +21,32 @@ function Principal() {
   const [interfazVictoria, setInterfazVictoria] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const listaPjsId = JSON.parse(localStorage.getItem("listaPjsId"));
-  const [listaPjs] = useState(personajes.filter(personaje => listaPjsId.includes(personaje.id)));
-  const [listPjsEsp, setListPjsEsp] = useState(cartasEspeciales.filter(esp => esp.id == 2));
+  const [listaPjs] = useState(
+    personajes.filter((personaje) => listaPjsId.includes(personaje.id))
+  );
+  const [listPjsEsp, setListPjsEsp] = useState(
+    cartasEspeciales.filter((esp) => esp.id == 2)
+  );
   const listaOpnId = JSON.parse(localStorage.getItem("listaOpnId"));
-  const [listaOpn] = useState(personajes.filter(personaje => listaOpnId.includes(personaje.id)));
-  const [listOpnEsp, setListOpnEsp] = useState(cartasEspeciales.filter(esp => esp.id == 2));
+  const [listaOpn] = useState(
+    personajes.filter((personaje) => listaOpnId.includes(personaje.id))
+  );
+  const [listOpnEsp, setListOpnEsp] = useState(
+    cartasEspeciales.filter((esp) => esp.id == 2)
+  );
   const navigate = useNavigate();
 
   const resetStates = () => {
     setCartaPjSelec(false);
     setCartaEspSelec(false);
-    actualizarContexto({ daño: null, cura: null, energia: null, cartaSeleccionada: null, cartaEspSeleccionada: null })
-  }
+    actualizarContexto({
+      daño: null,
+      cura: null,
+      energia: null,
+      cartaSeleccionada: null,
+      cartaEspSeleccionada: null,
+    });
+  };
 
   const simularClickEsc = () => {
     const escEvent = new KeyboardEvent("keydown", {
@@ -45,13 +60,13 @@ function Principal() {
   };
 
   const volverEstado = (event) => {
-    if (!event.target.closest('.no-reset')) {
+    if (!event.target.closest(".no-reset")) {
       resetStates();
     }
   };
 
   const volverEstadoEsc = (event) => {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       resetStates();
     }
   };
@@ -73,15 +88,24 @@ function Principal() {
     idAzar = 4;
     let idAzar2 = 3;
     if (tipo === 0 || tipo === 1) {
-      listPjsEsp.length <= 10 && setListPjsEsp((prevList) => [...prevList, ...cartasEspeciales.filter(esp => esp.id === idAzar2)]);
-    } if (tipo === 0 || tipo === 2) {
-      listOpnEsp.length <= 10 && setListOpnEsp((prevList) => [...prevList, ...cartasEspeciales.filter(esp => esp.id === idAzar)]);
+      listPjsEsp.length <= 10 &&
+        setListPjsEsp((prevList) => [
+          ...prevList,
+          ...cartasEspeciales.filter((esp) => esp.id === idAzar2),
+        ]);
     }
-  }
+    if (tipo === 0 || tipo === 2) {
+      listOpnEsp.length <= 10 &&
+        setListOpnEsp((prevList) => [
+          ...prevList,
+          ...cartasEspeciales.filter((esp) => esp.id === idAzar),
+        ]);
+    }
+  };
 
   useEffect(() => {
     if (!contexto.turno) {
-      setContTurnos(p => p + 1);
+      setContTurnos((p) => p + 1);
       bloquearCursor();
       turnoIA(actualizarContexto);
       darCartasEsp(0);
@@ -90,20 +114,22 @@ function Principal() {
     }
     resetStates();
 
-    window.addEventListener('click', volverEstado, { passive: true });
-    window.addEventListener('keydown', volverEstadoEsc);
+    window.addEventListener("click", volverEstado, { passive: true });
+    window.addEventListener("keydown", volverEstadoEsc);
 
     return () => {
       liberarCursor();
-      window.removeEventListener('click', volverEstado);
-      window.removeEventListener('keydown', volverEstadoEsc);
+      window.removeEventListener("click", volverEstado);
+      window.removeEventListener("keydown", volverEstadoEsc);
     };
   }, [contexto.turno]);
 
   useEffect(() => {
     if (contTurnos > 0 && contexto.darCarta) {
       !contexto.turno ? darCartasEsp(2) : darCartasEsp(1);
-      const cartaSeleccionada = document.getElementById(contexto.cartaEspSeleccionada);
+      const cartaSeleccionada = document.getElementById(
+        contexto.cartaEspSeleccionada
+      );
       cartaSeleccionada.remove();
       simularClickEsc();
       actualizarContexto({ darCarta: false });
@@ -113,9 +139,9 @@ function Principal() {
 
   const cambioEnergia = (carta) => {
     if (contexto.esUlti) {
-      actualizarCarta(carta, { energia: 0 })
+      actualizarCarta(carta, { energia: 0 });
     } else {
-      actualizarCarta(carta, { energia: cartaContexto[carta]?.energia + 1 })
+      actualizarCarta(carta, { energia: cartaContexto[carta]?.energia + 1 });
     }
   };
 
@@ -123,19 +149,25 @@ function Principal() {
     if (contexto.global) {
       if (contexto.daño) {
         const elementos = Array.from(document.querySelectorAll('[class*="2"]'));
-        elementos.forEach(elemento => {
+        elementos.forEach((elemento) => {
           const i = parseInt(elemento.id);
-          actualizarCarta(i, { vida: cartaContexto[i]?.vida - contexto.daño, efecto: `- ${contexto.daño}` });
+          actualizarCarta(i, {
+            vida: cartaContexto[i]?.vida - contexto.daño,
+            efecto: `- ${contexto.daño}`,
+          });
         });
       } else {
         const elementos = Array.from(document.querySelectorAll('[class*="0"]'));
-        elementos.forEach(elemento => {
+        elementos.forEach((elemento) => {
           const i = parseInt(elemento.id);
-          actualizarCarta(i, { vida: cartaContexto[i]?.vida + contexto.cura, efecto: `+ ${contexto.cura}` });
+          actualizarCarta(i, {
+            vida: cartaContexto[i]?.vida + contexto.cura,
+            efecto: `+ ${contexto.cura}`,
+          });
         });
       }
       cambioEnergia(contexto.cartaSeleccionada);
-      actualizarContexto({ turno: !contexto.turno, global: false })
+      actualizarContexto({ turno: !contexto.turno, global: false });
     }
   }, [contexto.global]);
 
@@ -153,16 +185,28 @@ function Principal() {
       className="body"
       style={{ backgroundColor: !contexto.turno ? "#7F8C8D" : "#BDC3C7" }}
     >
-      <button title='Menu' className='button menuBtn' onClick={() => setShowMenu(!showMenu)}><IoMenu /></button>
-      {showMenu &&
-        <div className='menu body'>
+      <button
+        title="Menu"
+        className="button menuBtn"
+        onClick={() => setShowMenu(!showMenu)}
+      >
+        <IoMenu />
+      </button>
+      {showMenu && (
+        <div className="menu body">
           <h1>Menu</h1>
           <h2>Turnos: {contTurnos}</h2>
-          <button className='button' onClick={() => navigate("/")}>Editar Mazo</button>
-          <button className='button' onClick={() => window.location.reload()}>Reiniciar Partida</button>
-          <button className='button' onClick={() => setShowMenu(false)}>Volver a la partida</button>
+          <button className="button" onClick={() => navigate("/")}>
+            Editar Mazo
+          </button>
+          <button className="button" onClick={() => window.location.reload()}>
+            Reiniciar Partida
+          </button>
+          <button className="button" onClick={() => setShowMenu(false)}>
+            Volver a la partida
+          </button>
         </div>
-      }
+      )}
       <DivCartas
         className="divEspOpnCss"
         lista={listOpnEsp}
@@ -183,28 +227,26 @@ function Principal() {
         lista={listPjsEsp}
         clickCarta={(carta) => setCartaEspSelec(carta)}
       />
-      {cartaPjSelec && (
-        <DivHabilidades
-          carta={cartaPjSelec}
-        />
-      )}
+      {cartaPjSelec && <DivHabilidades carta={cartaPjSelec} />}
       {cartaEspSelec && contexto.cartaEspSeleccionada && (
-        <DivInfoEsp
-          carta={cartaEspSelec}
-        />
+        <DivInfoEsp carta={cartaEspSelec} />
       )}
       {interfazDerrota && (
-        <div className='intRes'>
+        <div className="intRes">
           <h1>Derrota</h1>
           <h2>Vuelve a intentarlo o selecciona otra dificultad</h2>
-          <button onClick={() => navigate("/")}>Ir a la pagina de inicio</button>
+          <button onClick={() => navigate("/")}>
+            Ir a la pagina de inicio
+          </button>
         </div>
       )}
       {interfazVictoria && (
-        <div className='intRes'>
+        <div className="intRes">
           <h1>Victoria</h1>
           <h2>Tu puntuacion fue de: {contTurnos}</h2>
-          <button onClick={() => navigate("/")}>Ir a la pagina de inicio</button>
+          <button onClick={() => navigate("/")}>
+            Ir a la pagina de inicio
+          </button>
         </div>
       )}
     </div>
